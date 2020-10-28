@@ -15,7 +15,7 @@ const userService = (() => {
     }
 
     function login() {
-        
+        return kinvey.post( 'user', 'login', 'basic', { username, password } );
     }
 
     function logout() {

@@ -10,6 +10,7 @@ $(() => {
         this.get( '#/login', handlers.getLogin );
 
         this.post( '#/register', handlers.registerUser );
+        this.post( '#/login', handlers.logintUser );
         this.get( '#/logout', handlers.logoutUser );
     } );
 

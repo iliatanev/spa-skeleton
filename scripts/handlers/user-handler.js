@@ -17,13 +17,6 @@ handlers.getLogin = function( ctx ) {
     }).catch( function(err) {console.log(err)} );
 }
 
-handlers.logoutUser = function ( ctx ) {
-    userService.logout().then( () => {
-        sessionStorage.clear();
-        ctx.redirect( '#/home' );
-    } )
-}
-
 handlers.registerUser = function( ctx ) {
     let { username, password, rePass } = ctx.params;
     userService.register( username, password )
@@ -33,4 +26,19 @@ handlers.registerUser = function( ctx ) {
             } )
         .catch( function(err) { console.log( err ) } );
     
+}
+
+handlers.logoutUser = function ( ctx ) {
+    userService.logout().then( () => {
+        sessionStorage.clear();
+        ctx.redirect( '#/home' );
+    } )
+}
+
+handlers.logintUser = function ( ctx ) {
+    let { username, password } = ctx.params;
+    userService.logun( username, password ).then( ( res ) => {
+        userService.saveSession( res );
+        ctx.redirect( '#/home' );
+    } ).catch( function( err ) { console.log( err ); } )
 }
